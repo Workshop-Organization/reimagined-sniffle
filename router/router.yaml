@@ -20,16 +20,7 @@ cors:
 include_subgraph_errors:
   all: true # Propagate errors from all subgraphs
 
-subscription:
-  mode:
-    passthrough:
-       # docker setup, for local setup comment out the following section
-       subgraphs:
-        products:
-         path: /
-
-## Enter Workshop Module Configs Below
-## Authentication and Authorization Module
+## Authentication Module
 authentication:
   router:
     jwt:
@@ -42,3 +33,18 @@ authorization:
   require_authentication: false
   preview_directives: 
     enabled: true
+
+# Subscriptions Module
+subscription:
+  mode:
+    passthrough:
+       # docker setup, for local setup comment out the following section
+       subgraphs:
+        products:
+         path: /
+
+# Operation Limits
+limits:
+  max_depth: 5
+  max_height: 10
+  max_aliases: 3
